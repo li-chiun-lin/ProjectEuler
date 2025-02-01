@@ -1,11 +1,10 @@
 /*
 25%
 
-Let r be the remainder when (a−1)^n + (a+1)^n is divided by a^2.
-
-For example, if a = 7 and n = 3, then r = 42: 63 + 83 = 728 ≡ 42 mod 49. And as n varies, so too will r, but for a = 7 it turns out that r_max = 42.
-
-For 3 ≤ a ≤ 1000, find ∑ r_max.
+<p>The number $512$ is interesting because it is equal to the sum of its digits raised to some power: $5 + 1 + 2 = 8$, and $8^3 = 512$. Another example of a number with this property is $614656 = 28^4$.</p>
+<p>We shall define $a_n$ to be the $n$th term of this sequence and insist that a number must contain at least two digits to have a sum.</p>
+<p>You are given that $a_2 = 512$ and $a_{10} = 614656$.</p>
+<p>Find $a_{30}$.</p>
 */
 
 #include <algorithm>

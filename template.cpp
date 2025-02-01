@@ -6,6 +6,7 @@
 #include <climits>
 #include <cmath>
 #include <cstdlib>
+#include <functional>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -16,11 +17,13 @@
 #include <sstream>
 #include <stack>
 #include <string>
+#include <unordered_set>
 #include <vector>
+//#include <gmpxx.h> // GMP C++ wrapper
 
 using namespace std;
 
-int euler(int n)
+int euler(int N)
 {
 
 	return 0;

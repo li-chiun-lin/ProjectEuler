@@ -1,28 +1,23 @@
 /*
 50%
 
-Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers in any direction (horizontal, vertical, diagonal or anti-diagonal) is 16 = 8 + 7 + 1.
+<p>Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers in any direction (horizontal, vertical, diagonal or anti-diagonal) <span style="white-space:nowrap;">is $16$ ($= 8 + 7 + 1$).</span></p>
 
--2,  5,  3,  2,
- 9, -6,  5,  1,
- 3,  2,  7,  3,
--1,  8, -4,  8,
+<div class="center">
+<table border="1" cellpadding="6" cellspacing="0" style="margin:auto;"><tbody align="right"><tr><td width="25">$-2$</td><td width="25">$5$</td><td width="25">$3$</td><td width="25">$2$</td></tr><tr><td>$9$</td><td>$-6$</td><td>$5$</td><td>$1$</td></tr><tr><td>$3$</td><td>$2$</td><td>$7$</td><td>$3$</td></tr><tr><td>$-1$</td><td>$8$</td><td>$-4$</td><td>$8$</td></tr></tbody></table></div>
 
-Now, let us repeat the search, but on a much larger scale:
+<p>Now, let us repeat the search, but on a much larger scale:</p>
 
-First, generate four million pseudo-random numbers using a specific form of what is known as a "Lagged Fibonacci Generator":
+<p>First, generate four million pseudo-random numbers using a specific form of what is known as a "Lagged Fibonacci Generator":</p>
 
-For 1 <= k <= 55, 
-	s_k = (100003 - 200003 * k + 300007 * k^3) \mod 10^6 - 500000.
+<p>For $1 \le k \le 55$, $s_k = [100003 - 200003 k + 300007 k^3] \pmod{1000000} - 500000$.<br>
+For $56 \le k \le 4000000$, $s_k = [s_{k-24} + s_{k - 55} + 1000000] \pmod{1000000} - 500000$.</p>
 
-For 56 <= k <= 4000000, 
-	s_k = (s_{k - 24} + s_{k - 55} + 10^6) \mod 10^6 - 500000.
+<p>Thus, $s_{10} = -393027$ and $s_{100} = 86613$.</p>
 
-Thus, s_10 = -393027 and s_100 = 86613.
+<p>The terms of $s$ are then arranged in a $2000 \times 2000$ table, using the first $2000$ numbers to fill the first row (sequentially), the next $2000$ numbers to fill the second row, and so on.</p>
 
-The terms of s are then arranged in a $2000 \times 2000$ table, using the first 2000 numbers to fill the first row (sequentially), the next 2000 numbers to fill the second row, and so on.
-
-Finally, find the greatest sum of (any number of) adjacent entries in any direction (horizontal, vertical, diagonal or anti-diagonal).
+<p>Finally, find the greatest sum of (any number of) adjacent entries in any direction (horizontal, vertical, diagonal or anti-diagonal).</p>
 */
 
 #include <algorithm>

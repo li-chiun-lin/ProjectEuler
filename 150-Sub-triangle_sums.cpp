@@ -1,4 +1,36 @@
 /*
+55%
+
+In a triangular array of positive and negative integers, we wish to find a sub-triangle such that the sum of the numbers it contains is the smallest possible.
+
+In the example below, it can be easily verified that the marked triangle satisfies this condition having a sum of −42.
+
+ 15
+-14,  -7
+ 20, -13, -5
+ -3,   8, 23, -23
+  1,  -4, -5, -18,  5
+-16,  31,  2,   9, 28, 3
+
+We wish to make such a triangular array with one thousand rows, so we generate 500500 pseudo-random numbers sk in the range ±2^19, using a type of random number generator (known as a Linear Congruential Generator) as follows:
+
+t := 0
+for k = 1 up to k = 500500:
+    t := (615949*t + 797807) modulo 2^20
+    sk := t−2^19
+
+Thus: s1 = 273519, s2 = −153582, s3 = 450905 etc
+
+Our triangular array is then formed using the pseudo-random numbers thus:
+s1
+s2  s3
+s4  s5  s6 
+s7  s8  s9  s10
+...
+
+Sub-triangles can start at any element of the array and extend down as far as we like (taking-in the two elements directly below it from the next row, the three elements directly below from the row after that, and so on).
+The "sum of a sub-triangle" is defined as the sum of all the elements it contains.
+Find the smallest possible sub-triangle sum.
 
 */
 
@@ -20,19 +52,11 @@
 
 using namespace std;
 
-int euler()
+long long euler()
 {
-	#if 1
 	#define N 1000
-	int T[N][N] = {0};
-	//int* T[N];
-
-	//for (int i = 0; i < N; ++i)
-	//	T[i] = new int[N];
-
-	//return 0;
-
-#if 1
+	int accu[N][N + 1] = {0};
+	long long ans = LLONG_MAX;
 	long long t = 0;
 	int mod = 1 << 20;
 	int sub = 1 << 19;
@@ -41,92 +65,19 @@ int euler()
 		for (int j = 0; j <= i; ++j)
 		{
 			t = (t * 615949 + 797807) % mod;
-			T[i][j] = t - sub;
+			accu[i][j + 1] = accu[i][j] + t - sub;
 		}
-
-	cout << T[0][0] << " " << T[1][0] << " " << T[1][1] << "\n";
-#endif
-	//return 0;
-	#else
-	#define N 6
-	int T[N][N] = {
-		{15}, 
-		{-14, -7}, 
-		{20, -13, -5}, 
-		{-3, 8, 23, -26}, 
-		{1, -4, -5, -18, 5}, 
-		{-16, 31, 2, 9, 28, 3}
-	};
-	#endif
-
-
-
-	int accu[N][N + 1] = {0};
-
-	for (int i = 0; i < N; ++i)
-		for (int j = 0; j <= i; ++j)
-			accu[i][j + 1] = accu[i][j] + T[i][j];
-
-	
-
-	int dp[2][N][N] = {0};
-	int ans = INT_MAX;
-	int pre = 1;
-	int cur = 0;
-
-#if 0
 
 	for (int i = 0; i < N; ++i)
 		for (int j = 0; j <= i; ++j)
 		{
-			dp[pre][i][j] = T[i][j];
-			ans = min(ans, dp[pre][i][j]);
+			long long val = 0;
+
+			for (int k = 0; i + k < N; ++k)
+				ans = min(ans, val += accu[i + k][j + k + 1] - accu[i + k][j]);
 		}
 
-
-
-	for (int h = 1; h < N; ++h)
-	{
-		for (int i = 0; i + h < N; ++i)
-		{
-			for (int j = 0; j <= i; ++j)
-			{
-				//cout << h << " " << i << " " << j << "\n";
-				dp[cur][i][j] = dp[pre][i][j] + accu[i + h][j + h + 1] - accu[i + h][j];
-				ans = min(ans, dp[cur][i][j]);
-			}
-		}
-
-		pre = cur;
-		cur = 1 - cur;
-	}
-#endif
-
-	#if 0
-	for (int i = 0; i < N; ++i)
-	{
-		for (int j = 0; j <= i + 1; ++j)
-			cout << accu[i][j] << " ";
-		cout << "\n";
-	}
-	cout << "\n";
-
-	for (int h = 0; h < N; ++h)
-	{
-		cout << "h = " << h << "\n";
-		for (int i = 0; i < N; ++i)
-		{
-			for (int j = 0; j <= i; ++j)
-			{
-				cout << dp[h][i][j] << " ";
-			}
-			cout << "\n";
-		}
-	}
-	#endif
-
-	//return ans;
-	return 0;
+	return ans;
 }
 
 int main()

@@ -1,34 +1,28 @@
 /*
 30%
 
-A row of five grey square tiles is to have a number of its tiles replaced with coloured oblong tiles chosen from red (length two), green (length three), or blue (length four).
+<p>A row of five grey square tiles is to have a number of its tiles replaced with coloured oblong tiles chosen from red (length two), green (length three), or blue (length four).</p>
+<p>If red tiles are chosen there are exactly seven ways this can be done.</p>
 
-If red tiles are chosen there are exactly seven ways this can be done.
+<div class="center">
+<img src="resources/images/0116_1.png?1678992052" alt="png116_1.png">
+</div>
 
-RR...
-.RR..
-..RR.
-...RR
-RRRR.
-RR.RR
-.RRRR
+<p>If green tiles are chosen there are three ways.</p>
 
-If green tiles are chosen there are three ways.
+<div class="center">
+<img src="resources/images/0116_2.png?1678992052" alt="png116_2.png">
+</div>
 
-GGG..
-.GGG.
-..GGG
+<p>And if blue tiles are chosen there are two ways.</p>
 
-And if blue tiles are chosen there are two ways.
+<div class="center">
+<img src="resources/images/0116_3.png?1678992052" alt="png116_3.png">
+</div>
 
-BBBB.
-.BBBB
-
-Assuming that colours cannot be mixed there are 7 + 3 + 2 = 12 ways of replacing the grey tiles in a row measuring five units in length.
-
-How many different ways can the grey tiles in a row measuring fifty units in length be replaced if colours cannot be mixed and at least one coloured tile must be used?
-
-NOTE: This is related to Problem 117.
+<p>Assuming that colours cannot be mixed there are $7 + 3 + 2 = 12$ ways of replacing the grey tiles in a row measuring five units in length.</p>
+<p>How many different ways can the grey tiles in a row measuring fifty units in length be replaced if colours cannot be mixed and at least one coloured tile must be used?</p>
+<p class="note">NOTE: This is related to <a href="problem=117">Problem 117</a>.</p>
 */
 
 #include <algorithm>
